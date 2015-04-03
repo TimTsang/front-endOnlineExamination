@@ -223,7 +223,7 @@ var instance = new Test('alibaba',102);
 **B、**因为`instance`是`Test`对象的一个实例，如果我们在该实例中创建了`name`这个属性，这个属性的值将会屏蔽原型中的那个属性。所以`instance.name == 'aliyun'`为`false`，`instance.name`的值应为`alibaba`，所以`B`是错误的。
 **C、**因为`instance`是`Test`对象的一个实例，所以同样拥有`hasOwnproperty`这个方法，所以返回的结果是`false`.
 **D、**每个`JavaScript`对象都继承一个原型链，而所有原型都终止于`Object.prototype`。注意，这种继承是活动对象之间的继承。它不同于继承的常见概念，后者是指在声明类时类之间的发生的继承。因此，`JavaScript`继承动态性更强。它使用简单算法实现这一点，如下所示：当您尝试访问对象的属性/方法时，`JavaScript`将检查该属性/方法是否是在该对象中定义的。如果不是，则检查对象的原型。如果还不是，则检查该对象的原型的原型，如此继续，一直检查到`Object.prototype`。下图说明了此解析过程
-
+![此处输入图片的描述][1]
 所以`D`是正确的。
 所以最终的答案是`A、C、D`。
 
@@ -357,6 +357,7 @@ EventEmitter.prototype.on = function(eventName, callback) {
     </div>
 </main>
 ```
+![此处输入图片的描述][2]
 <i class="icon-pencil"></i> 解析：
 实现代码如下：
 ```css
@@ -430,9 +431,11 @@ div{
 	margin-left : -150px;  
 }
 ```
+![此处输入图片的描述][3]
 ------
 
 ##十四、使用语义化的 HTML 标签及css完成以下布局
+![此处输入图片的描述][4]
 • 容器默认宽度320px，图片100*100
 • hover 时容器宽度变为400px
 • 右侧文字宽度自适应，考虑模块化和扩展性
@@ -581,3 +584,9 @@ function getOkGet(){
     }
 }
 ```
+
+
+  [1]: http://d.pcs.baidu.com/thumbnail/4ecf0c35e83b7eb89eef62279646f1c1?fid=2202829050-250528-1100853840235417&time=1428073200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-3yk13xBDUOgkZ19vPMJepN2gPSk=&rt=sh&expires=2h&r=879806107&sharesign=unknown&size=c710_u500&quality=100
+  [2]: http://d.pcs.baidu.com/thumbnail/d9a5b4db0a099df6cf95190eb6d47a8d?fid=2202829050-250528-1104840046679206&time=1428073200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-RUSMAc52gWLUIp9355T81nVC9hk=&rt=sh&expires=2h&r=411096145&sharesign=unknown&size=c710_u500&quality=100
+  [3]: http://d.pcs.baidu.com/thumbnail/6fb8dd8c3b315648c54c8ca22970c12e?fid=2202829050-250528-661667274745253&time=1428073200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-UTvK7xKxHWQbLr81cEHa%2b9Ocxfc=&rt=sh&expires=2h&r=831208586&sharesign=unknown&size=c710_u500&quality=100
+  [4]: http://d.pcs.baidu.com/thumbnail/47b9952956f721a2da63736b05a33a08?fid=2202829050-250528-748519331502639&time=1428073200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-X/6cdH1zoJn4vWWSmevun5gjrE4=&rt=sh&expires=2h&r=344508239&sharesign=unknown&size=c710_u500&quality=100
