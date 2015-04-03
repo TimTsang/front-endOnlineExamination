@@ -36,6 +36,7 @@ waitForMs(500);
 >* D、time apan:100.077ms
 
 <i class="icon-pencil"></i> 解析：
+
 `console.time()`语句和`console.timeEnd()`语句是用来对程序的执行进行计时的。因为`f1`和`f2`被都`setTimeout()`事先设置的定时器装到一个事件队列里面。本来`f1`应该在100ms后就要执行了，但是因为`waitForMs()`占用了线程，而执行`JavaScript`是单线程的，所以就没办法在100ms后执行那个`f1`，所以需要等500ms等`waitForMs()`执行完，然后再执行`f1`和`f2`，这时候`f1`和`f2`就几乎同时执行了。所以应该选时间最短的一项，所以答案应该选`B` **（楷豪师兄提供的解答）**
 
 ------
@@ -47,15 +48,22 @@ waitForMs(500);
 >* D、false == undefined
 
 <i class="icon-pencil"></i> 解析：
+
 **A、**未定义的值和定义未赋值的为undefined，null是一种特殊的object，所以`typeof null` 返回的应该是`object`，但是为什么`null instanceof Object`返回的是`false`呢？原因就是`null`是个特殊的`Object`类型的值 ，表示空引用的意思 。`instanceof` 表示某个变量是否是某个对象的实例 ,所以为`false` 。
+
 **B、**`undefined == null`是正确的，尽管如此，和其他相似之处，但`null`和`undefined`并不是等价的。每个作为其独特的类型的唯一成员,`undefined`是`Undefined`类型和`null`是`Null`类型。所以`undefined === null`是不正确的，因为他们虽然值相等，但是类型不相等。区分这两个值，可以认为`undefined`代表一个意想不到的没有值而`null`作为预期没有值的代表。
+
 **（null:）**是一个对象，但是为空。因为是对象，所以`typeof null`返回`object` 。`null`是`JavaScript`保留关键字。 
 `null`参与数值运算时其值会自动转换为`0`，因此，下列表达式计算后会得到正确的数值： 
 表达式：`123 + null` 结果值：`123` 
 表达式：`123 * null` 结果值：`0`
+
 **（undefined：）**是全局对象`（window）`的一个特殊属性，其值是未定义的。但`typeof undefined`返回`undefined`。
+
 **C、**`NaN`是一个值类型,同是也是一个数值.意思是`Not A Number`,这个都知道是什么意思.值比较特殊,特殊在于`NaN`是一个数字,是一个与任何数值都不相等的数字。所以`NaN == NaN`返回`false`。
+
 **D、**`undefined`被转换为布尔值为`false`，`Boolean(undefined)`返回的是`false`，但是`undefined`不等于`false`。所以`false == undefined`返回`false`。
+
 所以最终答案应该为`B`。
 
 ------
@@ -79,6 +87,7 @@ var name = 'World!';
 >* D、Hello World
 
 <i class="icon-pencil"></i> 解析：
+
 因为`JavaScript`中的变量的查找是就近原则去寻找`var`定义的变量，当就近没有找到的话就会找外层。题目中因为`if`判段语句`(typeof name === 'undefined')`就近定义的`name`就在其执行完的下一行，所以`name`就被预解析了，实际上可以理解成在`if`判段语句`(typeof name === 'undefined')`上面`var name`这样定义了`name`，但是尚未被赋值。而在它执行完后面再去为`name`赋值`name = 'Jack';`，所以`name`的值是`undefined`。所以`typeof name === 'undefined'`成立，所以判断语句会走`if`成立部分。
 所以最终答案应该为`A`。
 
@@ -91,6 +100,7 @@ var name = 'World!';
 >* D、addEventListener第三个参数true代表支持捕获，false代表不支持捕获
 
 <i class="icon-pencil"></i> 解析：
+
 在`W3C`事件模型中，任何事件会首先被捕获直至到达目标元素然后再冒泡回去。事件流包括`3`个阶段：`事件捕获阶段`、`处于目标阶段`和`事件冒泡阶段`。所以`A`选项是`错`的。Web开发者可以选择将事件处理程序注册在捕获或者冒泡阶段。这可以通过`addEventListener()`方法来实现。如果该方法传入的最后一个参数值为`true`，表示事件处理程序被注册在捕获阶段，如果为`false`表示件处理程序被注册在冒泡阶段。所以`D`选项也是`错`的。
 假设有如下程序(`childEle`是`parentEle`的子元素)：
 1.`parentEle.addEventListener("click", parentDoSomething, true);`
@@ -122,8 +132,11 @@ var name = 'World!';
 >* D、document.querySelectorAll
 
 <i class="icon-pencil"></i> 解析：
+
 **A、**页面的`html元`素可以通过`id`获取，具有唯一性，如：`var divObjId = document.getElementsById("test");`。所以`A`是正确的。
+
 **B、**页面的`html`元素可以通过`class`获取，会选择页面上所有`class`名为`test`的DOM标签，如：`var divObjClass = document.getElementsByClassName("test");`。所以`B`是正确的。
+
 **C、D 、**`document.querySelector`只返回匹配的第一个元素，如果没有匹配项，返回`null`。`document.querySelectorAll`返回匹配的元素集合，如果没有匹配项，返回空的`nodelist`(节点数组)。这两个方法都可以接受三种类型的参数：`id(#)`，`class(.)`，`标签`，很像`jquery`的选择器。如：
 ```JavaScript
 var obj = document.querySelector("#id");
@@ -134,6 +147,7 @@ var elements = document.querySelectorAll("#score>tbody>tr>td:nth-of-type(2)");
 var elements = document.querySelectorAll("#id1, #id2, .class1, class2, div a, #list li img");
 
 ```
+
 所以`C`和`D`都是正确的。
 所以最终的答案是`A,B,C,D`。
 
@@ -146,10 +160,15 @@ var elements = document.querySelectorAll("#id1, #id2, .class1, class2, div a, #l
 >* D、要停止事件的传递，IE的做法是设置event对象的cancelBubble为true，而w3c的做法是设置执行stopPropagation方法
 
 <i class="icon-pencil"></i> 解析：
+
 **A、**`IE`使用`attachEvent/detachEvent`方法来添加和删除事件监听器；`w3c`使用`addEventListener/removeEventListener`方法。这是正确的。
+
 **B、**`IE`事件监听器内使用的是一个全局的`Event`对象，而`w3c`是将`event`对象作为参数传递给监听器。所以`B`是错误的。
+
 **C、**`IE`没有提供对事件捕获阶段的支持。所以`C`也是错误的。
-**C、**要想阻止冒泡，在`Microsoft`模型中，需要将事件的`cancelBubble`属性设置为`true`。在`W3C`模型中，需要调用事件的`stopPropagation()`方法。
+
+**D、**要想阻止冒泡，在`Microsoft`模型中，需要将事件的`cancelBubble`属性设置为`true`。在`W3C`模型中，需要调用事件的`stopPropagation()`方法。
+
 这两种方法阻止了事件的所有冒泡。如果想解决浏览器兼容问题，可以像下面这样写：
 ```JavaScript
 function doSomething(e){
@@ -193,6 +212,7 @@ console.log(array2);
 >* D、Array1的值为[1,2,3];Array2的值为[1,2,3]
 
 <i class="icon-pencil"></i> 解析：
+
 数组对象是引用的关系，`array2`改变，`array1`也会改变。`array1`改变，`array2`也会改变。
 所以最终的答案是`C`。
 
@@ -219,11 +239,17 @@ var instance = new Test('alibaba',102);
 >* D、所有对象都继承自Object.prototype
 
 <i class="icon-pencil"></i> 解析：
+
 **A、**`javascript`对象有两种不同的属性来源，一个是对象自身属性，另一是继承于原型链上的属性,所以`A`是正确的。
+
 **B、**因为`instance`是`Test`对象的一个实例，如果我们在该实例中创建了`name`这个属性，这个属性的值将会屏蔽原型中的那个属性。所以`instance.name == 'aliyun'`为`false`，`instance.name`的值应为`alibaba`，所以`B`是错误的。
+
 **C、**因为`instance`是`Test`对象的一个实例，所以同样拥有`hasOwnproperty`这个方法，所以返回的结果是`false`.
+
 **D、**每个`JavaScript`对象都继承一个原型链，而所有原型都终止于`Object.prototype`。注意，这种继承是活动对象之间的继承。它不同于继承的常见概念，后者是指在声明类时类之间的发生的继承。因此，`JavaScript`继承动态性更强。它使用简单算法实现这一点，如下所示：当您尝试访问对象的属性/方法时，`JavaScript`将检查该属性/方法是否是在该对象中定义的。如果不是，则检查对象的原型。如果还不是，则检查该对象的原型的原型，如此继续，一直检查到`Object.prototype`。下图说明了此解析过程
+
 ![此处输入图片的描述][1]
+
 所以`D`是正确的。
 所以最终的答案是`A、C、D`。
 
@@ -357,7 +383,9 @@ EventEmitter.prototype.on = function(eventName, callback) {
     </div>
 </main>
 ```
+
 ![此处输入图片的描述][2]
+
 <i class="icon-pencil"></i> 解析：
 实现代码如下：
 ```css
@@ -377,6 +405,7 @@ div{
 
 ##十二、有一个包含数据列表的页面，数据行数不确定。每一行数据都有一个删除按钮，单击删除按钮删除该列数据，请用JavaScript实现该功能。
 <i class="icon-pencil"></i> 解析：
+
 实现代码如下：
 ```html
 <script type="text/javascript">
@@ -418,6 +447,7 @@ window.onload = function(){
 
 ##十三、编写CSS让一个已知宽高的DIV,在PC/手机端水平垂直居中。
 <i class="icon-pencil"></i> 解析：
+
 实现代码如下：
 ```css
 div{
@@ -431,11 +461,15 @@ div{
 	margin-left : -150px;  
 }
 ```
+
 ![此处输入图片的描述][3]
+
 ------
 
 ##十四、使用语义化的 HTML 标签及css完成以下布局
+
 ![此处输入图片的描述][4]
+
 • 容器默认宽度320px，图片100*100
 • hover 时容器宽度变为400px
 • 右侧文字宽度自适应，考虑模块化和扩展性
