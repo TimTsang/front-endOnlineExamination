@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>2015阿里巴巴前端实习生在线笔试题 by TimTsang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">2015阿里巴巴前端实习生在线笔试题</h1>
+      <h2 class="project-tagline">JavaScript Alibaba Web前端</h2>
+      <a href="https://github.com/TimTsang/front-endOnlineExamination" class="btn">View on GitHub</a>
+      <a href="https://github.com/TimTsang/front-endOnlineExamination/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/TimTsang/front-endOnlineExamination/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="2015阿里巴巴前端实习生在线笔试题" class="anchor" href="#2015%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E5%89%8D%E7%AB%AF%E5%AE%9E%E4%B9%A0%E7%94%9F%E5%9C%A8%E7%BA%BF%E7%AC%94%E8%AF%95%E9%A2%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>2015阿里巴巴前端实习生在线笔试题</h1>
+
+<p>前几天参加了2015阿里巴巴前端实习生在线笔试，现在整理一下那些笔试题，下面选择题给出的一些解析和答案都是自己上网查过相关资料然后根据自己的理解给出的，不保证全部正确哈，仅作参考作用。</p>
+
+<hr>
+
+<h2>
+<a id="一单项选择对于下列程序运行结果符合预期的是" class="anchor" href="#%E4%B8%80%E5%8D%95%E9%A1%B9%E9%80%89%E6%8B%A9%E5%AF%B9%E4%BA%8E%E4%B8%8B%E5%88%97%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%E7%AC%A6%E5%90%88%E9%A2%84%E6%9C%9F%E7%9A%84%E6%98%AF" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、（单项选择）对于下列程序运行结果，符合预期的是</h2>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">function</span> <span class="pl-en">f1</span>() {
+
+    <span class="pl-en">console</span><span class="pl-c1">.time</span>(<span class="pl-s"><span class="pl-pds">'</span>time span<span class="pl-pds">'</span></span>);
+
+}
+<span class="pl-k">function</span> <span class="pl-en">f2</span>() {
+
+    <span class="pl-en">console</span><span class="pl-c1">.timeEnd</span>(<span class="pl-s"><span class="pl-pds">'</span>time span<span class="pl-pds">'</span></span>);
+
+}
+
+<span class="pl-c1">setTimeout</span>(f1, <span class="pl-c1">100</span>);
+
+<span class="pl-c1">setTimeout</span>(f2, <span class="pl-c1">200</span>);
+
+<span class="pl-k">function</span> <span class="pl-en">waitForMs</span>(<span class="pl-smi">n</span>) {
+
+    <span class="pl-k">var</span> now <span class="pl-k">=</span> <span class="pl-c1">Date</span>.now();
+
+    <span class="pl-k">while</span> (<span class="pl-c1">Date</span>.now() <span class="pl-k">-</span> now <span class="pl-k">&lt;</span> n) {}
+
+}
+
+waitForMs(<span class="pl-c1">500</span>);</pre></div>
+
+<blockquote>
+<ul>
+<li>A、time apan:700.077ms</li>
+<li>B、time apan:0.066ms</li>
+<li>C、time apan:500.077ms</li>
+<li>D、time apan:100.077ms</li>
+</ul>
+</blockquote>
+
+<p><i></i> 解析：
+<code>console.time()</code>语句和<code>console.timeEnd()</code>语句是用来对程序的执行进行计时的。因为<code>f1</code>和<code>f2</code>被都<code>setTimeout()</code>事先设置的定时器装到一个事件队列里面。本来<code>f1</code>应该在100ms后就要执行了，但是因为<code>waitForMs()</code>占用了线程，而执行<code>JavaScript</code>是单线程的，所以就没办法在100ms后执行那个<code>f1</code>，所以需要等500ms等<code>waitForMs()</code>执行完，然后再执行<code>f1</code>和<code>f2</code>，这时候<code>f1</code>和<code>f2</code>就几乎同时执行了。所以应该选时间最短的一项，所以答案应该选<code>B</code> <strong>（楷豪师兄提供的解答）</strong></p>
+
+<hr>
+
+<h2>
+<a id="二单项选择请选择结果为真的表达式" class="anchor" href="#%E4%BA%8C%E5%8D%95%E9%A1%B9%E9%80%89%E6%8B%A9%E8%AF%B7%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%9C%E4%B8%BA%E7%9C%9F%E7%9A%84%E8%A1%A8%E8%BE%BE%E5%BC%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、（单项选择）请选择结果为真的表达式</h2>
+
+<blockquote>
+<ul>
+<li>A、null instanceof Object</li>
+<li>B、null == undefined</li>
+<li>C、NaN == NaN</li>
+<li>D、false == undefined</li>
+</ul>
+</blockquote>
+
+<p><i></i> 解析：
+<strong>A、</strong>未定义的值和定义未赋值的为undefined，null是一种特殊的object，所以<code>typeof null</code> 返回的应该是<code>object</code>，但是为什么<code>null instanceof Object</code>返回的是<code>false</code>呢？原因就是<code>null</code>是个特殊的<code>Object</code>类型的值 ，表示空引用的意思 。<code>instanceof</code> 表示某个变量是否是某个对象的实例 ,所以为<code>false</code> 。
+<strong>B、</strong><code>undefined == null</code>是正确的，尽管如此，和其他相似之处，但<code>null</code>和<code>undefined</code>并不是等价的。每个作为其独特的类型的唯一成员,<code>undefined</code>是<code>Undefined</code>类型和<code>null</code>是<code>Null</code>类型。所以<code>undefined === null</code>是不正确的，因为他们虽然值相等，但是类型不相等。区分这两个值，可以认为<code>undefined</code>代表一个意想不到的没有值而<code>null</code>作为预期没有值的代表。
+<strong>（null:）</strong>是一个对象，但是为空。因为是对象，所以<code>typeof null</code>返回<code>object</code> 。<code>null</code>是<code>JavaScript</code>保留关键字。 
+<code>null</code>参与数值运算时其值会自动转换为<code>0</code>，因此，下列表达式计算后会得到正确的数值： 
+表达式：<code>123 + null</code> 结果值：<code>123</code> 
+表达式：<code>123 * null</code> 结果值：<code>0</code>
+<strong>（undefined：）</strong>是全局对象<code>（window）</code>的一个特殊属性，其值是未定义的。但<code>typeof undefined</code>返回<code>undefined</code>。
+<strong>C、</strong><code>NaN</code>是一个值类型,同是也是一个数值.意思是<code>Not A Number</code>,这个都知道是什么意思.值比较特殊,特殊在于<code>NaN</code>是一个数字,是一个与任何数值都不相等的数字。所以<code>NaN == NaN</code>返回<code>false</code>。
+<strong>D、</strong><code>undefined</code>被转换为布尔值为<code>false</code>，<code>Boolean(undefined)</code>返回的是<code>false</code>，但是<code>undefined</code>不等于<code>false</code>。所以<code>false == undefined</code>返回<code>false</code>。
+所以最终答案应该为<code>B</code>。</p>
+
+<hr>
+
+<h2>
+<a id="三单项选择下面程序的执行结果是" class="anchor" href="#%E4%B8%89%E5%8D%95%E9%A1%B9%E9%80%89%E6%8B%A9%E4%B8%8B%E9%9D%A2%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E6%98%AF" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、（单项选择）下面程序的执行结果是</h2>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">var</span> name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>World!<span class="pl-pds">'</span></span>;
+(<span class="pl-k">function</span> () {
+  <span class="pl-k">if</span> (<span class="pl-k">typeof</span> name <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span>) {
+    <span class="pl-k">var</span> name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Jack<span class="pl-pds">'</span></span>;
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>Goodbye <span class="pl-pds">'</span></span> <span class="pl-k">+</span> name);
+  } <span class="pl-k">else</span> {
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>Hello <span class="pl-pds">'</span></span> <span class="pl-k">+</span> name);
+  }
+})();
+</pre></div>
+
+<blockquote>
+<ul>
+<li>A、Goodbye Jack </li>
+<li>B、Hello Jack</li>
+<li>C、Hello undefined</li>
+<li>D、Hello World</li>
+</ul>
+</blockquote>
+
+<p><i></i> 解析：
+因为<code>JavaScript</code>中的变量的查找是就近原则去寻找<code>var</code>定义的变量，当就近没有找到的话就会找外层。题目中因为<code>if</code>判段语句<code>(typeof name === 'undefined')</code>就近定义的<code>name</code>就在其执行完的下一行，所以<code>name</code>就被预解析了，实际上可以理解成在<code>if</code>判段语句<code>(typeof name === 'undefined')</code>上面<code>var name</code>这样定义了<code>name</code>，但是尚未被赋值。而在它执行完后面再去为<code>name</code>赋值<code>name = 'Jack';</code>，所以<code>name</code>的值是<code>undefined</code>。所以<code>typeof name === 'undefined'</code>成立，所以判断语句会走<code>if</code>成立部分。
+所以最终答案应该为<code>A</code>。</p>
+
+<hr>
+
+<h2>
+<a id="四不定项选择以下关于dom事件流的表述哪些是正确的" class="anchor" href="#%E5%9B%9B%E4%B8%8D%E5%AE%9A%E9%A1%B9%E9%80%89%E6%8B%A9%E4%BB%A5%E4%B8%8B%E5%85%B3%E4%BA%8Edom%E4%BA%8B%E4%BB%B6%E6%B5%81%E7%9A%84%E8%A1%A8%E8%BF%B0%E5%93%AA%E4%BA%9B%E6%98%AF%E6%AD%A3%E7%A1%AE%E7%9A%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、（不定项选择）以下关于DOM事件流的表述哪些是正确的</h2>
+
+<blockquote>
+<ul>
+<li>A、事件流包括两个阶段：事件捕获阶段、事件冒泡阶段</li>
+<li>B、IE跟标准浏览器对于DOM事件流实现不一样</li>
+<li>C、假设parentEle是childEle的父节点，绑定事件：parentEle.addEventListener("click", fn1, false)和childEle.addEventListener("click", fn2,false),当点击childEle的时候fn1将先于fn2触发</li>
+<li>D、addEventListener第三个参数true代表支持捕获，false代表不支持捕获</li>
+</ul>
+</blockquote>
+
+<p><i></i> 解析：
+在<code>W3C</code>事件模型中，任何事件会首先被捕获直至到达目标元素然后再冒泡回去。事件流包括<code>3</code>个阶段：<code>事件捕获阶段</code>、<code>处于目标阶段</code>和<code>事件冒泡阶段</code>。所以<code>A</code>选项是<code>错</code>的。Web开发者可以选择将事件处理程序注册在捕获或者冒泡阶段。这可以通过<code>addEventListener()</code>方法来实现。如果该方法传入的最后一个参数值为<code>true</code>，表示事件处理程序被注册在捕获阶段，如果为<code>false</code>表示件处理程序被注册在冒泡阶段。所以<code>D</code>选项也是<code>错</code>的。
+假设有如下程序(<code>childEle</code>是<code>parentEle</code>的子元素)：
+1.<code>parentEle.addEventListener("click", parentDoSomething, true);</code>
+2.<code>childEle.addEventListener("click", childEleDoSomething, false);</code>
+如果用户点击子元素<code>childEle</code>会发生如下事情：</p>
+
+<blockquote>
+<p>a、点击事件开始于<code>捕获阶段</code>。它会先查询是否有<code>childEle</code>的任何祖先元素在<code>捕获阶段</code>绑定了<code>onclick</code>事件。
+b、它发现祖先元素1在捕获阶段绑定了<code>onclick</code>事件，于是<code>parentEle.parentDoSomething()</code>首先被执行。
+c、事件一直查询到目标元素<code>childEle</code>都没有再发现别的在<code>捕获阶段</code>绑定的<code>onclick</code>事件，事件转到它的<code>冒泡阶段</code>并执行<code>childEleDoSomething()</code>(注册在<code>childEle</code>上的在<code>冒泡阶段</code>执行的事件处理程序)。
+d、事件再次向上查询并检查是否有任何祖先元素在<code>冒泡阶段</code>绑定了<code>onclick</code>事件，并没有查询到，所以什么都没有发生。</p>
+</blockquote>
+
+<p>再看相反的例子：
+1.<code>parentEle.addEventListener("click", parentDoSomething, false);</code>
+2.<code>childEle.addEventListener("click", childEleDoSomething, false);</code>
+现在如果用户点击<code>childEle</code>，下面的事情会按顺序发生：</p>
+
+<blockquote>
+<p>a、点击事件发生于<code>捕获阶段</code>。事件查询<code>childEle</code>是否有任何祖先元素在<code>捕获阶段</code>绑定了<code>onclick</code>事件并且没有查找到这样的元素。
+b、事件查询到目标元素<code>childEle</code>自己。事件转为<code>冒泡阶段</code>并执行<code>childEleDoSomething()</code>。
+c、事件再次向上查询并检查目标元素是否有任何祖先元素在<code>冒泡阶段</code>绑定了<code>onclick</code>事件。
+d、它找到了满足条件的<code>parentEle</code>，然后执行<code>parentDoSomething()</code>。所以选项<code>C</code>是<code>错</code>的，应该是<code>fn2</code>先触发。</p>
+</blockquote>
+
+<p>因为<code>IE</code>没有提供对<code>事件捕获阶段</code>的支持，所以<code>IE</code>跟<code>标准浏览器</code>对于<code>DOM事件流</code>实现不一样。
+所以最终答案应该为<code>B</code>。</p>
+
+<hr>
+
+<h2>
+<a id="五不定项选择通过下面的哪些方法可以获取页面的html元素" class="anchor" href="#%E4%BA%94%E4%B8%8D%E5%AE%9A%E9%A1%B9%E9%80%89%E6%8B%A9%E9%80%9A%E8%BF%87%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E7%9A%84html%E5%85%83%E7%B4%A0" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、（不定项选择）通过下面的哪些方法可以获取页面的html元素</h2>
+
+<blockquote>
+<ul>
+<li>A、document.getElementById<br>
+</li>
+<li>B、document.getElementsByClassName</li>
+<li>C、document.querySelector</li>
+<li>D、document.querySelectorAll</li>
+</ul>
+</blockquote>
+
+<p><i></i> 解析：
+<strong>A、</strong>页面的<code>html元</code>素可以通过<code>id</code>获取，具有唯一性，如：<code>var divObjId = document.getElementsById("test");</code>。所以<code>A</code>是正确的。
+<strong>B、</strong>页面的<code>html</code>元素可以通过<code>class</code>获取，会选择页面上所有<code>class</code>名为<code>test</code>的DOM标签，如：<code>var divObjClass = document.getElementsByClassName("test");</code>。所以<code>B</code>是正确的。
+<strong>C、D 、</strong><code>document.querySelector</code>只返回匹配的第一个元素，如果没有匹配项，返回<code>null</code>。<code>document.querySelectorAll</code>返回匹配的元素集合，如果没有匹配项，返回空的<code>nodelist</code>(节点数组)。这两个方法都可以接受三种类型的参数：<code>id(#)</code>，<code>class(.)</code>，<code>标签</code>，很像<code>jquery</code>的选择器。如：</p>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">var</span> obj <span class="pl-k">=</span> <span class="pl-c1">document</span>.querySelector(<span class="pl-s"><span class="pl-pds">"</span>#id<span class="pl-pds">"</span></span>);
+<span class="pl-k">var</span> obj <span class="pl-k">=</span> <span class="pl-c1">document</span>.querySelector(<span class="pl-s"><span class="pl-pds">"</span>.classname<span class="pl-pds">"</span></span>);
+<span class="pl-k">var</span> obj <span class="pl-k">=</span> <span class="pl-c1">document</span>.querySelector(<span class="pl-s"><span class="pl-pds">"</span>div<span class="pl-pds">"</span></span>);
+<span class="pl-k">var</span> el <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">body</span>.querySelector(<span class="pl-s"><span class="pl-pds">"</span>style[type='text/css'], style:not([type])<span class="pl-pds">"</span></span>);
+<span class="pl-k">var</span> elements <span class="pl-k">=</span> <span class="pl-c1">document</span>.querySelectorAll(<span class="pl-s"><span class="pl-pds">"</span>#score&gt;tbody&gt;tr&gt;td:nth-of-type(2)<span class="pl-pds">"</span></span>);
+<span class="pl-k">var</span> elements <span class="pl-k">=</span> <span class="pl-c1">document</span>.querySelectorAll(<span class="pl-s"><span class="pl-pds">"</span>#id1, #id2, .class1, class2, div a, #list li img<span class="pl-pds">"</span></span>);
+</pre></div>
+
+<p>所以<code>C</code>和<code>D</code>都是正确的。
+所以最终的答案是<code>A,B,C,D</code>。</p>
+
+<hr>
+
+<h2>
+<a id="六不定项选择下面选项中对javascript事件的描述不正确的是" class="anchor" href="#%E5%85%AD%E4%B8%8D%E5%AE%9A%E9%A1%B9%E9%80%89%E6%8B%A9%E4%B8%8B%E9%9D%A2%E9%80%89%E9%A1%B9%E4%B8%AD%E5%AF%B9javascript%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%8F%8F%E8%BF%B0%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%98%AF" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、（不定项选择）下面选项中，对javascript事件的描述不正确的是</h2>
+
+<blockquote>
+<ul>
+<li>A、IE使用attachEvent/detachEvent方法来添加和删除事件监听器；w3c使用addEventListener/removeEventListener方法</li>
+<li>B、IE是将event对象作为参数传递给监听器,w3c事件监听器内使用的是一个全局的Event对象</li>
+<li>C、IE提供了对事件捕获阶段的支持</li>
+<li>D、要停止事件的传递，IE的做法是设置event对象的cancelBubble为true，而w3c的做法是设置执行stopPropagation方法</li>
+</ul>
+</blockquote>
+
+<p><i></i> 解析：
+<strong>A、</strong><code>IE</code>使用<code>attachEvent/detachEvent</code>方法来添加和删除事件监听器；<code>w3c</code>使用<code>addEventListener/removeEventListener</code>方法。这是正确的。
+<strong>B、</strong><code>IE</code>事件监听器内使用的是一个全局的<code>Event</code>对象，而<code>w3c</code>是将<code>event</code>对象作为参数传递给监听器。所以<code>B</code>是错误的。
+<strong>C、</strong><code>IE</code>没有提供对事件捕获阶段的支持。所以<code>C</code>也是错误的。
+<strong>C、</strong>要想阻止冒泡，在<code>Microsoft</code>模型中，需要将事件的<code>cancelBubble</code>属性设置为<code>true</code>。在<code>W3C</code>模型中，需要调用事件的<code>stopPropagation()</code>方法。
+这两种方法阻止了事件的所有冒泡。如果想解决浏览器兼容问题，可以像下面这样写：</p>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">function</span> <span class="pl-en">doSomething</span>(<span class="pl-smi">e</span>){
+
+    e <span class="pl-k">=</span> <span class="pl-c1">window</span>.<span class="pl-c1">event</span> <span class="pl-k">||</span> e;
+
+    e.cancelBubble <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+
+    <span class="pl-k">if</span>(e.stopPropagation){
+
+        e.stopPropagation();
+
+    }
+
+}</pre></div>
+
+<p>在不支持<code>cancelBubble</code>属性的浏览器中设置它的值并不会报错。浏览器会忽略它并创建这个属性。当然，它并不能真正地阻止冒泡，但是给它分配值的操作本身是安全的。
+所以最终的答案是<code>B,C</code>。</p>
+
+<hr>
+
+<h2>
+<a id="七单项选择" class="anchor" href="#%E4%B8%83%E5%8D%95%E9%A1%B9%E9%80%89%E6%8B%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、（单项选择）</h2>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">var</span> array1 <span class="pl-k">=</span> [<span class="pl-c1">1</span>,<span class="pl-c1">2</span>];
+
+<span class="pl-k">var</span> array2 <span class="pl-k">=</span> array1;
+
+array1[<span class="pl-c1">0</span>] <span class="pl-k">=</span> array2[<span class="pl-c1">1</span>];
+
+array2.<span class="pl-c1">push</span>(<span class="pl-c1">3</span>);
+
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(array1);
+
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(array2);</pre></div>
+
+<p>执行上面的代码<code>array1</code>和<code>array2</code>的值分别是什么？</p>
+
+<blockquote>
+<ul>
+<li>A、Array1的值为[2,2];Array2的值为[1,2,3]</li>
+<li>B、Array1的值为[2,2,3];Array2的值为[1,2,3]</li>
+<li>C、Array1的值为[2,2,3];Array2的值为[2,2,3]</li>
+<li>D、Array1的值为[1,2,3];Array2的值为[1,2,3]</li>
+</ul>
+</blockquote>
+
+<p><i></i> 解析：
+数组对象是引用的关系，<code>array2</code>改变，<code>array1</code>也会改变。<code>array1</code>改变，<code>array2</code>也会改变。
+所以最终的答案是<code>C</code>。</p>
+
+<hr>
+
+<h2>
+<a id="八不定项选择有如下代码" class="anchor" href="#%E5%85%AB%E4%B8%8D%E5%AE%9A%E9%A1%B9%E9%80%89%E6%8B%A9%E6%9C%89%E5%A6%82%E4%B8%8B%E4%BB%A3%E7%A0%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>八、（不定项选择）有如下代码</h2>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">function</span> <span class="pl-en">Test</span>(<span class="pl-smi">name</span>,<span class="pl-smi">age</span>){
+    <span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> name;
+<span class="pl-v">this</span>.age <span class="pl-k">=</span> age;
+};
+<span class="pl-c1">Test</span>.<span class="pl-c1">prototype</span> <span class="pl-k">=</span> {
+    name<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>aliyun<span class="pl-pds">'</span></span>,
+    <span class="pl-en">hasOwnproperty</span>:<span class="pl-k">function</span>(){
+    <span class="pl-k">return</span> <span class="pl-c1">false</span>;
+}
+};
+<span class="pl-k">var</span> instance <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Test</span>(<span class="pl-s"><span class="pl-pds">'</span>alibaba<span class="pl-pds">'</span></span>,<span class="pl-c1">102</span>);</pre></div>
+
+<p>以下关于原型链的说法正确的是：</p>
+
+<blockquote>
+<ul>
+<li>A、JavaScript对象有两种不同的属性，一种是对象自身的属性，另一种是继承于原型链上的属性</li>
+<li>B、instance.name == 'aliyun'为true</li>
+<li>C、instance.hasOwnproperty('age')结果将是false</li>
+<li>D、所有对象都继承自Object.prototype</li>
+</ul>
+</blockquote>
+
+<p><i></i> 解析：
+<strong>A、</strong><code>javascript</code>对象有两种不同的属性来源，一个是对象自身属性，另一是继承于原型链上的属性,所以<code>A</code>是正确的。
+<strong>B、</strong>因为<code>instance</code>是<code>Test</code>对象的一个实例，如果我们在该实例中创建了<code>name</code>这个属性，这个属性的值将会屏蔽原型中的那个属性。所以<code>instance.name == 'aliyun'</code>为<code>false</code>，<code>instance.name</code>的值应为<code>alibaba</code>，所以<code>B</code>是错误的。
+<strong>C、</strong>因为<code>instance</code>是<code>Test</code>对象的一个实例，所以同样拥有<code>hasOwnproperty</code>这个方法，所以返回的结果是<code>false</code>.
+<strong>D、</strong>每个<code>JavaScript</code>对象都继承一个原型链，而所有原型都终止于<code>Object.prototype</code>。注意，这种继承是活动对象之间的继承。它不同于继承的常见概念，后者是指在声明类时类之间的发生的继承。因此，<code>JavaScript</code>继承动态性更强。它使用简单算法实现这一点，如下所示：当您尝试访问对象的属性/方法时，<code>JavaScript</code>将检查该属性/方法是否是在该对象中定义的。如果不是，则检查对象的原型。如果还不是，则检查该对象的原型的原型，如此继续，一直检查到<code>Object.prototype</code>。下图说明了此解析过程</p>
+
+<p>所以<code>D</code>是正确的。
+所以最终的答案是<code>A、C、D</code>。</p>
+
+<hr>
+
+<h2>
+<a id="九实现函数rangestartstopstep返回一个数组step大于1" class="anchor" href="#%E4%B9%9D%E5%AE%9E%E7%8E%B0%E5%87%BD%E6%95%B0rangestartstopstep%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84step%E5%A4%A7%E4%BA%8E1" aria-hidden="true"><span class="octicon octicon-link"></span></a>九、实现函数range([start,]stop[,step])返回一个数组（step大于1）</h2>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">&gt;</span> range(<span class="pl-c1">1</span>,<span class="pl-c1">11</span>); <span class="pl-k">=&gt;</span> [<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>,<span class="pl-c1">6</span>,<span class="pl-c1">7</span>,<span class="pl-c1">8</span>,<span class="pl-c1">9</span>,<span class="pl-c1">10</span>]
+
+<span class="pl-k">&gt;</span> range(<span class="pl-c1">0</span>); <span class="pl-k">=&gt;</span> []
+
+<span class="pl-k">&gt;</span> range(<span class="pl-c1">10</span>); <span class="pl-k">=&gt;</span> [<span class="pl-c1">0</span>,<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>,<span class="pl-c1">6</span>,<span class="pl-c1">7</span>,<span class="pl-c1">8</span>,<span class="pl-c1">9</span>]
+
+<span class="pl-k">&gt;</span> range(<span class="pl-c1">0</span>,<span class="pl-c1">30</span>,<span class="pl-c1">5</span>); <span class="pl-k">=&gt;</span> [<span class="pl-c1">0</span>,<span class="pl-c1">5</span>,<span class="pl-c1">10</span>,<span class="pl-c1">15</span>,<span class="pl-c1">20</span>,<span class="pl-c1">25</span>]</pre></div>
+
+<p><i></i> 解析：
+实现代码如下：</p>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">function</span> <span class="pl-en">range</span>(){
+
+    <span class="pl-k">try</span>{
+
+        <span class="pl-k">var</span> argLength <span class="pl-k">=</span> arguments.<span class="pl-c1">length</span>;
+
+        <span class="pl-k">var</span> newArray <span class="pl-k">=</span> [];
+
+        <span class="pl-k">switch</span>(argLength){
+
+            <span class="pl-k">case</span> <span class="pl-c1">0</span> <span class="pl-k">:</span> <span class="pl-k">return</span> newArray;<span class="pl-k">break</span>;
+
+            <span class="pl-k">case</span> <span class="pl-c1">1</span> <span class="pl-k">:</span> {
+
+                <span class="pl-k">for</span>(<span class="pl-k">var</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span> ; i <span class="pl-k">&lt;</span> arguments[<span class="pl-c1">0</span>] ; i<span class="pl-k">++</span>){
+
+                    newArray.<span class="pl-c1">push</span>(i);
+
+                }
+
+                <span class="pl-k">return</span> newArray;
+
+                <span class="pl-k">break</span>;
+
+            }
+
+            <span class="pl-k">case</span> <span class="pl-c1">2</span> <span class="pl-k">:</span> {
+
+                <span class="pl-k">for</span>(<span class="pl-k">var</span> i <span class="pl-k">=</span> arguments[<span class="pl-c1">0</span>] ; i <span class="pl-k">&lt;</span> arguments[<span class="pl-c1">1</span>] ; i<span class="pl-k">++</span>){
+
+                    newArray.<span class="pl-c1">push</span>(i);
+
+                }
+
+                <span class="pl-k">return</span> newArray;
+
+                <span class="pl-k">break</span>;
+
+            }
+
+            <span class="pl-k">case</span> <span class="pl-c1">3</span> <span class="pl-k">:</span> {
+
+                <span class="pl-k">for</span>(<span class="pl-k">var</span> i <span class="pl-k">=</span> arguments[<span class="pl-c1">0</span>] ; i <span class="pl-k">&lt;</span> arguments[<span class="pl-c1">1</span>] ; i <span class="pl-k">=</span> i <span class="pl-k">+</span> arguments[<span class="pl-c1">2</span>]){
+
+                    newArray.<span class="pl-c1">push</span>(i);
+
+                }
+
+                <span class="pl-k">return</span> newArray;
+
+                <span class="pl-k">break</span>;
+
+            }
+
+            <span class="pl-k">default</span> <span class="pl-k">:</span> <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>error!<span class="pl-pds">"</span></span>);<span class="pl-k">break</span>;
+
+        }
+
+    }<span class="pl-k">catch</span>(e){
+
+        <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>error!<span class="pl-pds">"</span></span>);
+
+    }
+
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="十背景" class="anchor" href="#%E5%8D%81%E8%83%8C%E6%99%AF" aria-hidden="true"><span class="octicon octicon-link"></span></a>十、背景：</h2>
+
+<blockquote>
+<p>1、对象A直接调用对象B的某个方法，实现交互逻辑。但是导致的问题是A和B紧密耦合，修改B可能导致A调用B的方法失效。
+2、为了解决耦合导致的问题，我们可以设计成：
+对象A生成消息 -&gt; 将消息通知给一个消息处理器（Observable）-&gt; 消息处理器将消息传递给B
+具体的调用过程变成：
+A.emit(‘message’,data); B.on(‘message’,function(data){});
+请实现这一事件消息代理功能
+//请将事件消息功能补充完整
+function EventEmitter(){}</p>
+</blockquote>
+
+<p><i></i> 解析：
+实现代码如下：</p>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">function</span> <span class="pl-en">EventEmitter</span>() {
+
+    <span class="pl-v">this</span>.eventFunctionMap <span class="pl-k">=</span> {};
+
+}
+
+<span class="pl-c1">EventEmitter</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">emit</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">eventName</span>, <span class="pl-smi">data</span>){
+
+    <span class="pl-v">this</span>.eventFunctionMap[eventName].<span class="pl-c1">call</span>(<span class="pl-v">this</span>, data);
+
+}
+
+<span class="pl-c1">EventEmitter</span>.<span class="pl-c1">prototype</span>.<span class="pl-en">on</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">eventName</span>, <span class="pl-smi">callback</span>) {
+
+    <span class="pl-v">this</span>.eventFunctionMap[eventName] <span class="pl-k">=</span> callback;
+
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="十一实现下图的布局" class="anchor" href="#%E5%8D%81%E4%B8%80%E5%AE%9E%E7%8E%B0%E4%B8%8B%E5%9B%BE%E7%9A%84%E5%B8%83%E5%B1%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>十一、实现下图的布局</h2>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">main</span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        A
+    &lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        B
+    &lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        C
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">main</span>&gt;</pre></div>
+
+<p><i></i> 解析：
+实现代码如下：</p>
+
+<div class="highlight highlight-css"><pre><span class="pl-ent">div</span>{
+    <span class="pl-c1"><span class="pl-c1">height</span></span>: <span class="pl-c1">50<span class="pl-k">px</span></span>;
+    <span class="pl-c1"><span class="pl-c1">width</span></span>: <span class="pl-c1">50<span class="pl-k">px</span></span>;
+    <span class="pl-c1"><span class="pl-c1">background-color</span></span>: <span class="pl-c1">black</span>;
+    <span class="pl-c1"><span class="pl-c1">display</span></span>: <span class="pl-c1">inline-block</span>;
+    <span class="pl-c1"><span class="pl-c1">margin-left</span></span>: <span class="pl-c1">10<span class="pl-k">px</span></span>;
+    <span class="pl-c1"><span class="pl-c1">color</span></span>: <span class="pl-c1">white</span>;
+    <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">20<span class="pl-k">px</span></span>;
+    <span class="pl-c1"><span class="pl-c1">text-align</span></span>: <span class="pl-c1">center</span>;
+    <span class="pl-c1"><span class="pl-c1">line-height</span></span>: <span class="pl-c1">50<span class="pl-k">px</span></span>;
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="十二有一个包含数据列表的页面数据行数不确定每一行数据都有一个删除按钮单击删除按钮删除该列数据请用javascript实现该功能" class="anchor" href="#%E5%8D%81%E4%BA%8C%E6%9C%89%E4%B8%80%E4%B8%AA%E5%8C%85%E5%90%AB%E6%95%B0%E6%8D%AE%E5%88%97%E8%A1%A8%E7%9A%84%E9%A1%B5%E9%9D%A2%E6%95%B0%E6%8D%AE%E8%A1%8C%E6%95%B0%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%AF%8F%E4%B8%80%E8%A1%8C%E6%95%B0%E6%8D%AE%E9%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%A0%E9%99%A4%E6%8C%89%E9%92%AE%E5%8D%95%E5%87%BB%E5%88%A0%E9%99%A4%E6%8C%89%E9%92%AE%E5%88%A0%E9%99%A4%E8%AF%A5%E5%88%97%E6%95%B0%E6%8D%AE%E8%AF%B7%E7%94%A8javascript%E5%AE%9E%E7%8E%B0%E8%AF%A5%E5%8A%9F%E8%83%BD" aria-hidden="true"><span class="octicon octicon-link"></span></a>十二、有一个包含数据列表的页面，数据行数不确定。每一行数据都有一个删除按钮，单击删除按钮删除该列数据，请用JavaScript实现该功能。</h2>
+
+<p><i></i> 解析：
+实现代码如下：</p>
+
+<div class="highlight highlight-html"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">window</span>.<span class="pl-en">onload</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-k">var</span> oUl <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementsByTagName</span>(<span class="pl-s"><span class="pl-pds">'</span>ul<span class="pl-pds">'</span></span>)[<span class="pl-c1">0</span>];</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c1">oUl</span>.<span class="pl-en">onclick</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">ev</span>){</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">var</span> ev <span class="pl-k">=</span> ev <span class="pl-k">||</span> <span class="pl-c1">window</span>.<span class="pl-c1">event</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">var</span> target <span class="pl-k">=</span> ev.<span class="pl-c1">target</span> <span class="pl-k">||</span> ev.srcElement;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">if</span>(target.<span class="pl-c1">tagName</span>.<span class="pl-c1">toLowerCase</span>() <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>button<span class="pl-pds">'</span></span>){</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">            <span class="pl-k">var</span> tr <span class="pl-k">=</span> target.<span class="pl-c1">parentNode</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">            tr.<span class="pl-c1">parentNode</span>.<span class="pl-c1">removeChild</span>(tr);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">}</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span>
+&lt;<span class="pl-ent">body</span>&gt; 
+    &lt;<span class="pl-ent">ul</span>&gt;
+        &lt;<span class="pl-ent">li</span>&gt;一&lt;<span class="pl-ent">button</span>&gt;删除一&lt;/<span class="pl-ent">button</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span>&gt;二&lt;<span class="pl-ent">button</span>&gt;删除二&lt;/<span class="pl-ent">button</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span>&gt;三&lt;<span class="pl-ent">button</span>&gt;删除三&lt;/<span class="pl-ent">button</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span>&gt;四&lt;<span class="pl-ent">button</span>&gt;删除四&lt;/<span class="pl-ent">button</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span>&gt;五&lt;<span class="pl-ent">button</span>&gt;删除五&lt;/<span class="pl-ent">button</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span>&gt;六&lt;<span class="pl-ent">button</span>&gt;删除六&lt;/<span class="pl-ent">button</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;/<span class="pl-ent">ul</span>&gt;
+&lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+
+<hr>
+
+<h2>
+<a id="十三编写css让一个已知宽高的div在pc手机端水平垂直居中" class="anchor" href="#%E5%8D%81%E4%B8%89%E7%BC%96%E5%86%99css%E8%AE%A9%E4%B8%80%E4%B8%AA%E5%B7%B2%E7%9F%A5%E5%AE%BD%E9%AB%98%E7%9A%84div%E5%9C%A8pc%E6%89%8B%E6%9C%BA%E7%AB%AF%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD" aria-hidden="true"><span class="octicon octicon-link"></span></a>十三、编写CSS让一个已知宽高的DIV,在PC/手机端水平垂直居中。</h2>
+
+<p><i></i> 解析：
+实现代码如下：</p>
+
+<div class="highlight highlight-css"><pre><span class="pl-ent">div</span>{
+    <span class="pl-c1"><span class="pl-c1">width</span></span> : <span class="pl-c1">300<span class="pl-k">px</span></span>;
+    <span class="pl-c1"><span class="pl-c1">height</span></span> : <span class="pl-c1">300<span class="pl-k">px</span></span>;
+    <span class="pl-c1"><span class="pl-c1">border</span></span> : <span class="pl-c1">1<span class="pl-k">px</span></span> <span class="pl-c1">solid</span> <span class="pl-c1">red</span>;
+    <span class="pl-c1"><span class="pl-c1">position</span></span> : <span class="pl-c1">absolute</span>;
+    <span class="pl-c1"><span class="pl-c1">top</span></span> : <span class="pl-c1">50<span class="pl-k">%</span></span>;
+    <span class="pl-c1"><span class="pl-c1">left</span></span> : <span class="pl-c1">50<span class="pl-k">%</span></span>;
+    <span class="pl-c1"><span class="pl-c1">margin-top</span></span> : <span class="pl-c1">-150<span class="pl-k">px</span></span>;
+    <span class="pl-c1"><span class="pl-c1">margin-left</span></span> : <span class="pl-c1">-150<span class="pl-k">px</span></span>;  
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="十四使用语义化的-html-标签及css完成以下布局" class="anchor" href="#%E5%8D%81%E5%9B%9B%E4%BD%BF%E7%94%A8%E8%AF%AD%E4%B9%89%E5%8C%96%E7%9A%84-html-%E6%A0%87%E7%AD%BE%E5%8F%8Acss%E5%AE%8C%E6%88%90%E4%BB%A5%E4%B8%8B%E5%B8%83%E5%B1%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>十四、使用语义化的 HTML 标签及css完成以下布局</h2>
+
+<p>• 容器默认宽度320px，图片100*100
+• hover 时容器宽度变为400px
+• 右侧文字宽度自适应，考虑模块化和扩展性
+<i></i> 解析：
+实现代码如下：</p>
+
+<div class="highlight highlight-html"><pre><span class="pl-s1">&lt;<span class="pl-ent">style</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/css<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1"><span class="pl-ent">div</span>{</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">width</span></span> : <span class="pl-c1">320<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"><span class="pl-ent">div</span><span class="pl-e">:hover</span>{</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">width</span></span> : <span class="pl-c1">400<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"><span class="pl-ent">img</span>{</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">float</span></span> : <span class="pl-c1">left</span>;</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">width</span></span> : <span class="pl-c1">100<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">height</span></span> : <span class="pl-c1">100<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"><span class="pl-ent">h1</span>{</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">color</span></span> : <span class="pl-c1">#333</span>;</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">margin-bottom</span></span> : <span class="pl-c1">8<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">font-size</span></span> : <span class="pl-c1">20<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"><span class="pl-ent">p</span>{</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">color</span></span> : <span class="pl-c1">#666</span>;</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">font-size</span></span> : <span class="pl-c1">12<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">    <span class="pl-c1"><span class="pl-c1">line-height</span></span>: <span class="pl-c1">1.2<span class="pl-k">em</span></span>;</span>
+<span class="pl-s1">}</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">style</span>&gt;</span>
+&lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>d:\1.png<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">h1</span>&gt;(最多两行20px #333,顶部对齐图片，底部间距8px)&lt;/<span class="pl-ent">h1</span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;(12px #666 行高1.2)使用语义化的HTML标签完成以下布局，考虑模块化和扩展性。容器默认为320px，右侧文字宽度自适应&lt;/<span class="pl-ent">p</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<hr>
+
+<h2>
+<a id="十五写一个可以暂停执行的javascript函数" class="anchor" href="#%E5%8D%81%E4%BA%94%E5%86%99%E4%B8%80%E4%B8%AA%E5%8F%AF%E4%BB%A5%E6%9A%82%E5%81%9C%E6%89%A7%E8%A1%8C%E7%9A%84javascript%E5%87%BD%E6%95%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>十五、写一个可以暂停执行的JavaScript函数</h2>
+
+<h4>
+<a id="1使用函数闭包来实现" class="anchor" href="#1%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E9%97%AD%E5%8C%85%E6%9D%A5%E5%AE%9E%E7%8E%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>1、使用函数闭包来实现</h4>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>继续<span class="pl-pds">"</span></span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">'</span>st();<span class="pl-pds">'</span></span>/&gt;
+<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1"><span class="pl-c">/*需要执行的函数*/</span></span>
+<span class="pl-s1"><span class="pl-k">function</span> <span class="pl-en">test</span>(<span class="pl-smi">x</span>){</span>
+<span class="pl-s1">    <span class="pl-c1">alert</span>(x<span class="pl-k">++</span>);</span>
+<span class="pl-s1">    <span class="pl-c1">alert</span>(x<span class="pl-k">++</span>);</span>
+<span class="pl-s1">    <span class="pl-k">return</span> <span class="pl-k">function</span>(){</span>
+<span class="pl-s1">        <span class="pl-c1">alert</span>(x<span class="pl-k">++</span>);</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"><span class="pl-k">var</span> st <span class="pl-k">=</span> <span class="pl-c1">test</span>(<span class="pl-c1">10</span>);</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<h4>
+<a id="2使用settimeout来实现" class="anchor" href="#2%E4%BD%BF%E7%94%A8settimeout%E6%9D%A5%E5%AE%9E%E7%8E%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>2、使用setTimeOut来实现</h4>
+
+<div class="highlight highlight-html"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">language</span>=<span class="pl-s"><span class="pl-pds">"</span>javascript<span class="pl-pds">"</span></span>&gt; </span>
+<span class="pl-s1"><span class="pl-c">/*Javascript中暂停功能的实现 </span></span>
+<span class="pl-s1"><span class="pl-c">Javascript本身没有暂停功能（sleep不能使用）同时 vbscript也不能使用doEvents，故编写此函数实现此功能。 </span></span>
+<span class="pl-s1"><span class="pl-c">javascript作为弱对象语言，一个函数也可以作为一个对象使用。 </span></span>
+<span class="pl-s1"><span class="pl-c">比如： </span></span>
+<span class="pl-s1"><span class="pl-c">function Test(){ </span></span>
+<span class="pl-s1"><span class="pl-c">   alert("hello world"); </span></span>
+<span class="pl-s1"><span class="pl-c">   this.NextStep=function(){ </span></span>
+<span class="pl-s1"><span class="pl-c">      alert("NextStep"); </span></span>
+<span class="pl-s1"><span class="pl-c">   } </span></span>
+<span class="pl-s1"><span class="pl-c">} </span></span>
+<span class="pl-s1"><span class="pl-c">我们可以这样调用 var myTest=new Test();myTest.NextStep();</span></span>
+<span class="pl-s1"><span class="pl-c">我们做暂停的时候可以吧一个函数分为两部分，暂停操作前的不变，把要在暂停后执行的代码放在this.NextStep中。 </span></span>
+<span class="pl-s1"><span class="pl-c">为了控制暂停和继续，我们需要编写两个函数来分别实现暂停和继续功能。 </span></span>
+<span class="pl-s1"><span class="pl-c">暂停函数如下： </span></span>
+<span class="pl-s1"><span class="pl-c">*/</span></span>
+<span class="pl-s1"><span class="pl-k">function</span> <span class="pl-en">Pause</span>(<span class="pl-smi">obj</span>,<span class="pl-smi">iMinSecond</span>){ </span>
+<span class="pl-s1">    <span class="pl-k">if</span> (<span class="pl-c1">window</span>.eventList<span class="pl-k">==</span><span class="pl-c1">null</span>) <span class="pl-c1">window</span>.eventList<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">Array</span>(); </span>
+<span class="pl-s1">    <span class="pl-k">var</span> ind<span class="pl-k">=-</span><span class="pl-c1">1</span>; </span>
+<span class="pl-s1">    <span class="pl-k">for</span> (<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">0</span>;i<span class="pl-k">&lt;</span><span class="pl-c1">window</span>.eventList.<span class="pl-c1">length</span>;i<span class="pl-k">++</span>){ </span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-c1">window</span>.eventList[i]<span class="pl-k">==</span><span class="pl-c1">null</span>) { </span>
+<span class="pl-s1">            <span class="pl-c1">window</span>.eventList[i]<span class="pl-k">=</span>obj; </span>
+<span class="pl-s1">            ind<span class="pl-k">=</span>i; </span>
+<span class="pl-s1">            <span class="pl-k">break</span>; </span>
+<span class="pl-s1">        } </span>
+<span class="pl-s1">    } </span>
+<span class="pl-s1">    <span class="pl-k">if</span> (ind<span class="pl-k">==-</span><span class="pl-c1">1</span>){ </span>
+<span class="pl-s1">        ind<span class="pl-k">=</span><span class="pl-c1">window</span>.eventList.<span class="pl-c1">length</span>; </span>
+<span class="pl-s1">        <span class="pl-c1">window</span>.eventList[ind]<span class="pl-k">=</span>obj; </span>
+<span class="pl-s1">    } </span>
+<span class="pl-s1">    <span class="pl-c1">setTimeout</span>(<span class="pl-s"><span class="pl-pds">"</span>GoOn(<span class="pl-pds">"</span></span> <span class="pl-k">+</span> ind <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>)<span class="pl-pds">"</span></span>,iMinSecond); </span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"><span class="pl-c">/* </span></span>
+<span class="pl-s1"><span class="pl-c">该函数把要暂停的函数放到数组window.eventList里，同时通过setTimeout来调用继续函数。 </span></span>
+<span class="pl-s1"><span class="pl-c">继续函数如下： </span></span>
+<span class="pl-s1"><span class="pl-c">*/</span></span>
+<span class="pl-s1"><span class="pl-k">function</span> <span class="pl-en">GoOn</span>(<span class="pl-smi">ind</span>){ </span>
+<span class="pl-s1">    <span class="pl-k">var</span> obj<span class="pl-k">=</span><span class="pl-c1">window</span>.eventList[ind]; </span>
+<span class="pl-s1">    <span class="pl-c1">window</span>.eventList[ind]<span class="pl-k">=</span><span class="pl-c1">null</span>; </span>
+<span class="pl-s1">    <span class="pl-k">if</span> (obj.NextStep) obj.NextStep(); </span>
+<span class="pl-s1">    <span class="pl-k">else</span> obj(); </span>
+<span class="pl-s1">} </span>
+<span class="pl-s1"><span class="pl-c">/* </span></span>
+<span class="pl-s1"><span class="pl-c">该函数调用被暂停的函数的NextStep方法，如果没有这个方法则重新调用该函数。 </span></span>
+<span class="pl-s1"><span class="pl-c">函数编写完毕，我们可以作如下测试： </span></span>
+<span class="pl-s1"><span class="pl-c">*/</span></span>
+<span class="pl-s1"><span class="pl-k">function</span> <span class="pl-en">Test</span>(){ </span>
+<span class="pl-s1">   <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>hellow<span class="pl-pds">"</span></span>); </span>
+<span class="pl-s1">   Pause(<span class="pl-v">this</span>,<span class="pl-c1">1000</span>);<span class="pl-c">//调用暂停函数  </span></span>
+<span class="pl-s1">   <span class="pl-c1">this</span>.<span class="pl-en">NextStep</span><span class="pl-k">=</span><span class="pl-k">function</span>(){ </span>
+<span class="pl-s1">     <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>NextStep<span class="pl-pds">"</span></span>); </span>
+<span class="pl-s1">  } </span>
+<span class="pl-s1">} </span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<hr>
+
+<h2>
+<a id="十六用javascript写一个ajax的get请求" class="anchor" href="#%E5%8D%81%E5%85%AD%E7%94%A8javascript%E5%86%99%E4%B8%80%E4%B8%AAajax%E7%9A%84get%E8%AF%B7%E6%B1%82" aria-hidden="true"><span class="octicon octicon-link"></span></a>十六、用JavaScript写一个Ajax的get请求</h2>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c">/* 创建 XMLHttpRequest 对象 */</span>
+<span class="pl-k">var</span> xmlHttp <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+<span class="pl-k">function</span> <span class="pl-en">GetXmlHttpObject</span>(){
+    <span class="pl-k">if</span> (<span class="pl-c1">window</span>.<span class="pl-c1">XMLHttpRequest</span>){
+      <span class="pl-c">// code for IE7+, Firefox, Chrome, Opera, Safari</span>
+      Xmlhttp <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">XMLHttpRequest</span>();
+    }<span class="pl-k">else</span>{<span class="pl-c">// code for IE6, IE5</span>
+      Xmlhttp <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ActiveXObject</span>(<span class="pl-s"><span class="pl-pds">"</span>Microsoft.XMLHTTP<span class="pl-pds">"</span></span>);
+    }
+    <span class="pl-k">return</span> xmlhttp;
+}
+<span class="pl-c">// -----------ajax方法-----------//</span>
+<span class="pl-k">function</span> <span class="pl-en">getLabelsGet</span>(){
+    xmlHttp <span class="pl-k">=</span> GetXmlHttpObject();
+    <span class="pl-k">if</span> (xmlHttp <span class="pl-k">==</span> <span class="pl-c1">null</span>){
+        <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">'</span>您的浏览器不支持AJAX！<span class="pl-pds">'</span></span>);
+        <span class="pl-k">return</span>;
+    }
+    <span class="pl-k">var</span> id <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>).<span class="pl-c1">value</span>;
+    <span class="pl-k">var</span> url<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>http://timtsang.github.io?id=<span class="pl-pds">"</span></span><span class="pl-k">+</span>id<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>&amp;t/<span class="pl-pds">"</span></span><span class="pl-k">+</span><span class="pl-c1">Math</span>.<span class="pl-c1">random</span>();
+    xmlHttp.<span class="pl-c1">open</span>(<span class="pl-s"><span class="pl-pds">"</span>GET<span class="pl-pds">"</span></span>,url,<span class="pl-c1">true</span>);
+    xmlHttp.<span class="pl-c1">onreadystatechange</span><span class="pl-k">=</span>favorOK;<span class="pl-c">//发送事件后，收到信息了调用函数</span>
+    xmlHttp.<span class="pl-c1">send</span>();
+}
+<span class="pl-k">function</span> <span class="pl-en">getOkGet</span>(){
+    <span class="pl-k">if</span>(xmlHttp.<span class="pl-c1">readyState</span><span class="pl-k">==</span><span class="pl-c1">1</span><span class="pl-k">||</span>xmlHttp.<span class="pl-c1">readyState</span><span class="pl-k">==</span><span class="pl-c1">2</span><span class="pl-k">||</span>xmlHttp.<span class="pl-c1">readyState</span><span class="pl-k">==</span><span class="pl-c1">3</span>){
+        <span class="pl-c">// 本地提示：加载中</span>
+    }
+    <span class="pl-k">if</span> (xmlHttp.<span class="pl-c1">readyState</span><span class="pl-k">==</span><span class="pl-c1">4</span> <span class="pl-k">&amp;&amp;</span> xmlHttp.<span class="pl-c1">status</span><span class="pl-k">==</span><span class="pl-c1">200</span>){
+        <span class="pl-k">var</span> d<span class="pl-k">=</span> xmlHttp.<span class="pl-c1">responseText</span>;
+        <span class="pl-c">// 处理返回结果</span>
+    }
+}</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/TimTsang/front-endOnlineExamination">2015阿里巴巴前端实习生在线笔试题</a> is maintained by <a href="https://github.com/TimTsang">TimTsang</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
