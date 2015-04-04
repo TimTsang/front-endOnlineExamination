@@ -1,6 +1,5 @@
 # 2015阿里巴巴前端实习生在线笔试题
-
-前几天参加了2015阿里巴巴前端实习生在线笔试，现在整理一下那些笔试题，下面选择题给出的一些解析和答案都是自己上网查过相关资料然后根据自己的理解给出的，不保证全部正确哈，仅作参考作用。
+     前几天参加了2015阿里巴巴前端实习生在线笔试，发现题目真的挺难的，后来再重新回想的时候，除了本来就不会做的，还发现自己做错了几道题，现在整理一下那些笔试题，这里的笔试题部分是自己的，也有部分是工作室其他小伙伴们提供的。感谢楷豪师兄和闻东师兄的相关指导，感谢工作室其他小伙伴们提供的题目和答案。下面选择题给出的一些解析和答案都是自己上网查过相关资料然后根据自己的理解给出的，不保证全部正确哈，仅作参考作用。
 
 ------
 ## 一、（单项选择）对于下列程序运行结果，符合预期的是
@@ -60,7 +59,8 @@ waitForMs(500);
 
 **（undefined：）**是全局对象`（window）`的一个特殊属性，其值是未定义的。但`typeof undefined`返回`undefined`。
 
-**C、**`NaN`是一个值类型,同是也是一个数值.意思是`Not A Number`,这个都知道是什么意思.值比较特殊,特殊在于`NaN`是一个数字,是一个与任何数值都不相等的数字。所以`NaN == NaN`返回`false`。
+**C、**`NaN`是一个值类型,同是也是一个数值.意思是`Not A
+Number`,这个都知道是什么意思.值比较特殊,特殊在于`NaN`是一个数字,是一个与任何数值都不相等的数字。所以`NaN == NaN`返回`false`。
 
 **D、**`undefined`被转换为布尔值为`false`，`Boolean(undefined)`返回的是`false`，但是`undefined`不等于`false`。所以`false == undefined`返回`false`。
 
@@ -89,6 +89,7 @@ var name = 'World!';
 <i class="icon-pencil"></i> 解析：
 
 因为`JavaScript`中的变量的查找是就近原则去寻找`var`定义的变量，当就近没有找到的话就会找外层。题目中因为`if`判段语句`(typeof name === 'undefined')`就近定义的`name`就在其执行完的下一行，所以`name`就被预解析了，实际上可以理解成在`if`判段语句`(typeof name === 'undefined')`上面`var name`这样定义了`name`，但是尚未被赋值。而在它执行完后面再去为`name`赋值`name = 'Jack';`，所以`name`的值是`undefined`。所以`typeof name === 'undefined'`成立，所以判断语句会走`if`成立部分。
+
 所以最终答案应该为`A`。
 
 ------
@@ -102,23 +103,40 @@ var name = 'World!';
 <i class="icon-pencil"></i> 解析：
 
 在`W3C`事件模型中，任何事件会首先被捕获直至到达目标元素然后再冒泡回去。事件流包括`3`个阶段：`事件捕获阶段`、`处于目标阶段`和`事件冒泡阶段`。所以`A`选项是`错`的。Web开发者可以选择将事件处理程序注册在捕获或者冒泡阶段。这可以通过`addEventListener()`方法来实现。如果该方法传入的最后一个参数值为`true`，表示事件处理程序被注册在捕获阶段，如果为`false`表示件处理程序被注册在冒泡阶段。所以`D`选项也是`错`的。
+
 假设有如下程序(`childEle`是`parentEle`的子元素)：
+
 1.`parentEle.addEventListener("click", parentDoSomething, true);`
+
 2.`childEle.addEventListener("click", childEleDoSomething, false);`
+
 如果用户点击子元素`childEle`会发生如下事情：
+
 >a、点击事件开始于`捕获阶段`。它会先查询是否有`childEle`的任何祖先元素在`捕获阶段`绑定了`onclick`事件。
+
 >b、它发现祖先元素1在捕获阶段绑定了`onclick`事件，于是`parentEle.parentDoSomething()`首先被执行。
+
 >c、事件一直查询到目标元素`childEle`都没有再发现别的在`捕获阶段`绑定的`onclick`事件，事件转到它的`冒泡阶段`并执行`childEleDoSomething()`(注册在`childEle`上的在`冒泡阶段`执行的事件处理程序)。
+
 >d、事件再次向上查询并检查是否有任何祖先元素在`冒泡阶段`绑定了`onclick`事件，并没有查询到，所以什么都没有发生。
 
+
 再看相反的例子：
+
 1.`parentEle.addEventListener("click", parentDoSomething, false);`
+
 2.`childEle.addEventListener("click", childEleDoSomething, false);`
+
 现在如果用户点击`childEle`，下面的事情会按顺序发生：
+
 >a、点击事件发生于`捕获阶段`。事件查询`childEle`是否有任何祖先元素在`捕获阶段`绑定了`onclick`事件并且没有查找到这样的元素。
+
 >b、事件查询到目标元素`childEle`自己。事件转为`冒泡阶段`并执行`childEleDoSomething()`。
+
 >c、事件再次向上查询并检查目标元素是否有任何祖先元素在`冒泡阶段`绑定了`onclick`事件。
+
 >d、它找到了满足条件的`parentEle`，然后执行`parentDoSomething()`。所以选项`C`是`错`的，应该是`fn2`先触发。
+
 
 因为`IE`没有提供对`事件捕获阶段`的支持，所以`IE`跟`标准浏览器`对于`DOM事件流`实现不一样。
 所以最终答案应该为`B`。
@@ -138,6 +156,7 @@ var name = 'World!';
 **B、**页面的`html`元素可以通过`class`获取，会选择页面上所有`class`名为`test`的DOM标签，如：`var divObjClass = document.getElementsByClassName("test");`。所以`B`是正确的。
 
 **C、D 、**`document.querySelector`只返回匹配的第一个元素，如果没有匹配项，返回`null`。`document.querySelectorAll`返回匹配的元素集合，如果没有匹配项，返回空的`nodelist`(节点数组)。这两个方法都可以接受三种类型的参数：`id(#)`，`class(.)`，`标签`，很像`jquery`的选择器。如：
+
 ```JavaScript
 var obj = document.querySelector("#id");
 var obj = document.querySelector(".classname");
@@ -147,8 +166,8 @@ var elements = document.querySelectorAll("#score>tbody>tr>td:nth-of-type(2)");
 var elements = document.querySelectorAll("#id1, #id2, .class1, class2, div a, #list li img");
 
 ```
-
 所以`C`和`D`都是正确的。
+
 所以最终的答案是`A,B,C,D`。
 
 ------
@@ -170,6 +189,7 @@ var elements = document.querySelectorAll("#id1, #id2, .class1, class2, div a, #l
 **D、**要想阻止冒泡，在`Microsoft`模型中，需要将事件的`cancelBubble`属性设置为`true`。在`W3C`模型中，需要调用事件的`stopPropagation()`方法。
 
 这两种方法阻止了事件的所有冒泡。如果想解决浏览器兼容问题，可以像下面这样写：
+
 ```JavaScript
 function doSomething(e){
 
@@ -251,6 +271,7 @@ var instance = new Test('alibaba',102);
 ![此处输入图片的描述][1]
 
 所以`D`是正确的。
+
 所以最终的答案是`A、C、D`。
 
 ------
@@ -405,7 +426,6 @@ div{
 
 ##十二、有一个包含数据列表的页面，数据行数不确定。每一行数据都有一个删除按钮，单击删除按钮删除该列数据，请用JavaScript实现该功能。
 <i class="icon-pencil"></i> 解析：
-
 实现代码如下：
 ```html
 <script type="text/javascript">
@@ -461,9 +481,7 @@ div{
 	margin-left : -150px;  
 }
 ```
-
 ![此处输入图片的描述][3]
-
 ------
 
 ##十四、使用语义化的 HTML 标签及css完成以下布局
@@ -474,6 +492,7 @@ div{
 • hover 时容器宽度变为400px
 • 右侧文字宽度自适应，考虑模块化和扩展性
 <i class="icon-pencil"></i> 解析：
+
 实现代码如下：
 ```html
 <style type="text/css">
@@ -508,6 +527,8 @@ p{
 ------
 
 ##十五、写一个可以暂停执行的JavaScript函数
+<i class="icon-pencil"></i> 解析：
+
 ####1、使用函数闭包来实现
 ```html
 <input type="button" value="继续" onclick='st();'/>
@@ -583,6 +604,8 @@ function Test(){
 ------
 
 ##十六、用JavaScript写一个Ajax的get请求
+
+<i class="icon-pencil"></i> 解析：
 ```JavaScript
 /* 创建 XMLHttpRequest 对象 */
 var xmlHttp = null;
@@ -618,9 +641,226 @@ function getOkGet(){
     }
 }
 ```
+------
+
+##十七、使用html+css实现以下图形（不能用图片）
+
+![此处输入图片的描述][5]
+
+<i class="icon-pencil"></i> 解析：
+
+这道题感觉是做的最蛋疼的一道题，因为我之前根本就不理解题目到底要我实现哪个图形，狂刷新了N多遍网页，也没看到什么图形，后来觉得闻东师兄提醒之后才恍然大悟，原来真的是要我实现右边那个插入图片的小图标。不过就算当初知道这要实现这个小图标，我也做不出来，因为我根本不知道那两个三角形要怎么实现。
+```html
+<title>picture</title>
+<style type="text/css">
+#rectangle{
+	background: #FFF;
+    border: 10px solid #999999;
+    padding:10px;
+    height: 120px;
+    width: 200px;
+}
+#circle{
+	position:absolute;
+	margin-left: 140px;
+	margin-top: 10px;
+	width: 40px;
+	height: 40px;
+	background: #999999; 
+	-moz-border-radius: 20px; 
+	-webkit-border-radius: 20px; 
+	border-radius: 20px;
+}
+#triangle{
+	width: 0; 
+	height: 0; 
+	position:absolute;
+	margin-top: 40px;
+	border-bottom: 80px solid #999999; 
+	border-left: 50px solid transparent; 
+	border-right: 70px solid transparent; 
+}
+#triangle2{
+	width: 0; 
+	height: 0; 
+	position:absolute;
+	margin-top: 60px;
+	margin-left: 80px;
+	border-bottom: 60px solid #999999; 
+	border-left: 30px solid transparent; 
+	border-right: 70px solid transparent; 
+}
+</style>
+</head>
+<div id="rectangle"><span id="circle"></span><span id="triangle"></span><span id="triangle2"></span></div>
+</body>
+```
+效果图如下：
+
+![此处输入图片的描述][6]
 
 
-  [1]: http://d.pcs.baidu.com/thumbnail/4ecf0c35e83b7eb89eef62279646f1c1?fid=2202829050-250528-1100853840235417&time=1428073200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-3yk13xBDUOgkZ19vPMJepN2gPSk=&rt=sh&expires=2h&r=879806107&sharesign=unknown&size=c710_u500&quality=100
-  [2]: http://d.pcs.baidu.com/thumbnail/d9a5b4db0a099df6cf95190eb6d47a8d?fid=2202829050-250528-1104840046679206&time=1428073200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-RUSMAc52gWLUIp9355T81nVC9hk=&rt=sh&expires=2h&r=411096145&sharesign=unknown&size=c710_u500&quality=100
-  [3]: http://d.pcs.baidu.com/thumbnail/6fb8dd8c3b315648c54c8ca22970c12e?fid=2202829050-250528-661667274745253&time=1428073200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-UTvK7xKxHWQbLr81cEHa%2b9Ocxfc=&rt=sh&expires=2h&r=831208586&sharesign=unknown&size=c710_u500&quality=100
-  [4]: http://d.pcs.baidu.com/thumbnail/47b9952956f721a2da63736b05a33a08?fid=2202829050-250528-748519331502639&time=1428073200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-X/6cdH1zoJn4vWWSmevun5gjrE4=&rt=sh&expires=2h&r=344508239&sharesign=unknown&size=c710_u500&quality=100
+------
+
+##十八、数组去重，然后使数组元素按降序排序
+<i class="icon-pencil"></i> 解析：
+
+在排序的算法中，快速排序是相对比较高效的：
+```JavaScript
+Array.prototype.quickSort = function(){
+
+	if(this.length <= 1){
+	
+		return this;
+		
+	}else{
+	
+		var leftArray = [],
+		
+		 	rightArray = [],
+		 	
+		 	num = Math.floor((this.length)/2),
+		 	
+		 	middleValue = this.splice(num,1);
+		 	
+		for(var i = 0; i < this.length; i++){
+		
+			if(this[i] > middleValue){
+			
+				leftArray.push(this[i]);
+				
+			}else{
+			
+				rightArray.push(this[i]);
+				
+			}
+			
+		}
+		
+		return leftArray.quickSort().concat(middleValue,rightArray.quickSort());
+		
+	}
+	
+}
+```
+对于数组去重，有以下三种方法：
+
+第一种：
+```JavaScript
+Array.prototype.unique1 = function(){
+
+	var newArray = [this[0]];//结果数组
+	
+	for(var i = 1; i < this.length; i++){
+	
+		if(newArray.indexOf(this[i]) == -1){
+		
+			newArray.push(this[i]);
+			
+		}
+		
+	}
+	
+	return newArray;
+	
+}
+```
+第二种：
+```JavaScript
+Array.prototype.unique2 = function(){
+
+	var newArray = [this[0]];//结果数组
+	
+	for(var i = 1; i < this.length; i++){
+	
+		if(this.indexOf(this[i]) == i){
+		
+			newArray.push(this[i]);
+			
+		}
+		
+	}
+	
+	return newArray;
+	
+}
+```
+第三种：
+```JavaScript
+Array.prototype.unique3 = function(){
+
+	var arrayMap = {}, newArray = [];
+	
+	for(var i = 0; i < this.length; i++){
+	
+		if(!arrayMap[this[i]]){
+		
+			arrayMap[this[i]] = true;
+			
+			newArray.push(this[i]);
+			
+		}
+		
+	}
+	
+	return newArray;
+	
+}
+```
+先对数组按降序排序，再去重便可实现题目的要求,这样效率也会高一点：
+```JavaScript
+var newArray = [1,2,1,9,10,3,4,3,5,2,4,6,5,7,4,8,7,3,5,3];
+
+var nowArray = newArray.quickSort().unique1();
+
+console.log(nowArray);
+```
+------
+
+##十九、已知：
+```JavaScript
+var data = {
+	name: 'xiaoming',
+	age: '18'
+};
+var template = "My name is {$name}, my age is {$age}".
+//写一个函数，实现：
+function shenmegui(template, data) {
+
+} => My name is xiaoming, my age is 18.
+```
+<i class="icon-pencil"></i> 解析：
+
+```JavaScript
+var data = {
+
+	name:'xiaoming',
+	
+	age:'18'
+	
+};
+
+var template = "My name is {$name},my age is {$age}."
+
+function outputTemplate(template,data){
+
+	var regName = /(\{\$name\})/g;
+	
+	var regAge = /(\{\$age\})/g;
+	
+	template = template.replace(regName,data.name);
+	
+	template = template.replace(regAge,data.age);
+	
+	return template;
+}
+
+alert(outputTemplate(template,data));
+```
+
+  [1]: http://d.pcs.baidu.com/thumbnail/4ecf0c35e83b7eb89eef62279646f1c1?fid=2202829050-250528-1100853840235417&time=1428080400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-ixPyHeNsrqEko6BGOQZHTfg8%2bq0=&rt=sh&expires=2h&r=940897482&sharesign=unknown&size=c710_u500&quality=100
+  [2]: http://d.pcs.baidu.com/thumbnail/d9a5b4db0a099df6cf95190eb6d47a8d?fid=2202829050-250528-1104840046679206&time=1428080400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-1fHmTW4WZlSF7n4lHJymO/WRgXk=&rt=sh&expires=2h&r=592285753&sharesign=unknown&size=c710_u500&quality=100
+  [3]: http://d.pcs.baidu.com/thumbnail/6fb8dd8c3b315648c54c8ca22970c12e?fid=2202829050-250528-661667274745253&time=1428080400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-iIWaxxEJnIRKmha1dRG97rVs%2b9I=&rt=sh&expires=2h&r=691660618&sharesign=unknown&size=c710_u500&quality=100
+  [4]: http://d.pcs.baidu.com/thumbnail/47b9952956f721a2da63736b05a33a08?fid=2202829050-250528-748519331502639&time=1428080400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-oQAxpLjiesD8GrYO/MEvnOzBg1A=&rt=sh&expires=2h&r=940259878&sharesign=unknown&size=c710_u500&quality=100
+  [5]: http://d.pcs.baidu.com/thumbnail/dccaaa867c0c0648c151478fd9dcc7a8?fid=2202829050-250528-946194550987928&time=1428127200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-VHdPdxZ8IH8EWOi0lg3Ud2sSwVI=&rt=sh&expires=2h&r=627212079&sharesign=unknown&size=c710_u500&quality=100
+  [6]: http://d.pcs.baidu.com/thumbnail/726ad565168d11fb8d51ba70fc81be2a?fid=2202829050-250528-599447149333756&time=1428127200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-/amUCMEwniE3wqoVBudT8UlX1KU=&rt=sh&expires=2h&r=173359000&sharesign=unknown&size=c710_u500&quality=100
