@@ -426,6 +426,28 @@ div{
 	line-height: 50px;
 }
 ```
+下面是锦欣大神提供的另一种答案：
+```css
+/**base style**/
+div{
+  background:#000;
+  color:#fff;
+  height:50px;
+  width:50px;
+  text-align:center;
+  line-height:50px;
+}
+
+/**start here**/
+main{
+  text-align:center;
+}
+div{
+  display:inline-block;
+  _display:inline;/*hank IE*/
+  _zoom:0;/*hank IE*/
+}
+```
 ------
 
 ##十二、有一个包含数据列表的页面，数据行数不确定。每一行数据都有一个删除按钮，单击删除按钮删除该列数据，请用JavaScript实现该功能。
