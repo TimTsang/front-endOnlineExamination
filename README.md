@@ -1,7 +1,6 @@
 # 2015阿里巴巴前端实习生在线笔试题
 
-     前几天参加了2015阿里巴巴前端实习生在线笔试，发现题目真的挺难的，后来再重新回想的时候，除了本来就不会做的，还发现自己做错了几道题，现在整理一下那些笔试题，这里的笔试题部分是自己的，也有部分是工作室其他小伙伴们提供的。感谢楷豪师兄和闻东师兄的相关指导，感谢工作室其他小伙伴们提供的题目和答案。下面选择题给出的一些解析和答案都是自己上网查过相关资料然后根据自己的理解给出的，不保证全部正确哈，仅作参考作用。
-     
+前几天参加了2015阿里巴巴前端实习生在线笔试，发现题目真的挺难的，后来再重新回想的时候，除了本来就不会做的，还发现自己做错了几道题，现在整理一下那些笔试题，这里的笔试题部分是自己的，也有部分是工作室其他小伙伴们提供的。感谢楷豪师兄和闻东师兄的相关指导，感谢工作室其他小伙伴们提供的题目和答案。下面选择题给出的一些解析和答案都是自己上网查过相关资料然后根据自己的理解给出的，不保证全部正确哈，仅作参考作用。
 
 ------
 ## 一、（单项选择）对于下列程序运行结果，符合预期的是
@@ -270,7 +269,7 @@ var instance = new Test('alibaba',102);
 
 **D、**每个`JavaScript`对象都继承一个原型链，而所有原型都终止于`Object.prototype`。注意，这种继承是活动对象之间的继承。它不同于继承的常见概念，后者是指在声明类时类之间的发生的继承。因此，`JavaScript`继承动态性更强。它使用简单算法实现这一点，如下所示：当您尝试访问对象的属性/方法时，`JavaScript`将检查该属性/方法是否是在该对象中定义的。如果不是，则检查对象的原型。如果还不是，则检查该对象的原型的原型，如此继续，一直检查到`Object.prototype`。下图说明了此解析过程
 
-![此处输入图片的描述][1]
+![这里写图片描述](http://img.blog.csdn.net/20150404154242137)
 
 所以`D`是正确的。
 
@@ -407,7 +406,7 @@ EventEmitter.prototype.on = function(eventName, callback) {
 </main>
 ```
 
-![此处输入图片的描述][2]
+![这里写图片描述](http://img.blog.csdn.net/20150404154230487)
 
 <i class="icon-pencil"></i> 解析：
 实现代码如下：
@@ -483,12 +482,14 @@ div{
 	margin-left : -150px;  
 }
 ```
-![此处输入图片的描述][3]
+
+![这里写图片描述](http://img.blog.csdn.net/20150404154352512)
+
 ------
 
 ##十四、使用语义化的 HTML 标签及css完成以下布局
 
-![此处输入图片的描述][4]
+![这里写图片描述](http://img.blog.csdn.net/20150404154425147)
 
 • 容器默认宽度320px，图片100*100
 • hover 时容器宽度变为400px
@@ -647,7 +648,7 @@ function getOkGet(){
 
 ##十七、使用html+css实现以下图形（不能用图片）
 
-![此处输入图片的描述][5]
+![这里写图片描述](http://img.blog.csdn.net/20150404154549977)
 
 <i class="icon-pencil"></i> 解析：
 
@@ -699,8 +700,7 @@ function getOkGet(){
 ```
 效果图如下：
 
-![此处输入图片的描述][6]
-
+![这里写图片描述](http://img.blog.csdn.net/20150404154532898)
 
 ------
 
@@ -859,10 +859,3 @@ function outputTemplate(template,data){
 
 alert(outputTemplate(template,data));
 ```
-
-  [1]: http://d.pcs.baidu.com/thumbnail/4ecf0c35e83b7eb89eef62279646f1c1?fid=2202829050-250528-1100853840235417&time=1428080400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-ixPyHeNsrqEko6BGOQZHTfg8%2bq0=&rt=sh&expires=2h&r=940897482&sharesign=unknown&size=c710_u500&quality=100
-  [2]: http://d.pcs.baidu.com/thumbnail/d9a5b4db0a099df6cf95190eb6d47a8d?fid=2202829050-250528-1104840046679206&time=1428080400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-1fHmTW4WZlSF7n4lHJymO/WRgXk=&rt=sh&expires=2h&r=592285753&sharesign=unknown&size=c710_u500&quality=100
-  [3]: http://d.pcs.baidu.com/thumbnail/6fb8dd8c3b315648c54c8ca22970c12e?fid=2202829050-250528-661667274745253&time=1428080400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-iIWaxxEJnIRKmha1dRG97rVs%2b9I=&rt=sh&expires=2h&r=691660618&sharesign=unknown&size=c710_u500&quality=100
-  [4]: http://d.pcs.baidu.com/thumbnail/47b9952956f721a2da63736b05a33a08?fid=2202829050-250528-748519331502639&time=1428080400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-oQAxpLjiesD8GrYO/MEvnOzBg1A=&rt=sh&expires=2h&r=940259878&sharesign=unknown&size=c710_u500&quality=100
-  [5]: http://d.pcs.baidu.com/thumbnail/dccaaa867c0c0648c151478fd9dcc7a8?fid=2202829050-250528-946194550987928&time=1428127200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-VHdPdxZ8IH8EWOi0lg3Ud2sSwVI=&rt=sh&expires=2h&r=627212079&sharesign=unknown&size=c710_u500&quality=100
-  [6]: http://d.pcs.baidu.com/thumbnail/726ad565168d11fb8d51ba70fc81be2a?fid=2202829050-250528-599447149333756&time=1428127200&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-/amUCMEwniE3wqoVBudT8UlX1KU=&rt=sh&expires=2h&r=173359000&sharesign=unknown&size=c710_u500&quality=100
