@@ -291,68 +291,71 @@ var instance = new Test('alibaba',102);
 实现代码如下：
 ```JavaScript
 function range(){
-
-    try{
     
-        var argLength = arguments.length;
+	var argLength = arguments.length,
 	
-    	var newArray = [];
-    	
-    	switch(argLength){
-    	
-    		case 0 : return newArray;break;
-    		
-    		case 1 : {
-    		
-    			for(var i = 0 ; i < arguments[0] ; i++){
-    			
-    				newArray.push(i);
-    				
-    			}
-    			
-    			return newArray;
-    			
-    			break;
-    			
-    		}
-    		
-    		case 2 : {
-    		
-    			for(var i = arguments[0] ; i < arguments[1] ; i++){
-    			
-    				newArray.push(i);
-    				
-    			}
-    			
-    			return newArray;
-    			
-    			break;
-    			
-    		}
-    		
-    		case 3 : {
-    		
-    			for(var i = arguments[0] ; i < arguments[1] ; i = i + arguments[2]){
-    			
-    				newArray.push(i);
-    				
-    			}
-    			
-    			return newArray;
-    			
-    			break;
-    			
-    		}
-    		
-    		default : console.log("error!");break;
-    		
-	    }
-	    
-    }catch(e){
-        
-        console.log("error!");
-        
-    }
+	    newArray = [],
+	
+	    i = 0,
+	
+	    start = arguments[0],
+	
+	    stop = arguments[1],
+	
+	    step = arguments[2];
+	
+	switch(argLength){
+	
+		case 0 : throw Error('至少输入一个参数,限止数组在哪里结束');
+		
+		case 1 : {
+		
+		    stop = arguments[0];
+		    
+		    for( i = 0 ; i < stop ; i++){
+		    
+		    	newArray.push(i);
+		    	
+		    }
+		    
+		    return newArray;
+		    
+		}
+		
+		case 2 : {
+		
+		    for( i = start ; i < stop ; i++){
+		    
+		    	newArray.push(i);
+		    	
+		    }
+		    
+		    return newArray;
+		    
+		}
+		
+		case 3 : {
+		    
+		    if(step < 1) {
+		    
+		        throw Error('step > 1');
+		
+		    }else{
+		    
+			for( i = start ; i < stop ; i += step){
+		    
+		    		newArray.push(i);
+		    		
+		    	}
+		    	
+		    	return newArray;
+		    }
+		
+		}
+		
+		default : throw Error('最多传入三个参数');
+		
+	}
 	
 }
 ```
