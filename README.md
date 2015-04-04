@@ -859,3 +859,35 @@ function outputTemplate(template,data){
 
 alert(outputTemplate(template,data));
 ```
+------
+
+##二十、利用闭包，实现点击&lt;p>时，被点击的p的背景色变为#eee
+<i class="icon-pencil"></i> 解析：
+```JavaScript
+window.onload = function(){
+
+	var pObj = document.getElementsByTagName("p");
+	
+	for(var i = 0; i < pObj.length; i++){
+	
+		pObj[i].onclick = (function(){
+		
+			return function(){
+			
+				this.style.background = "#eee";
+				
+			}
+			
+		})(i);
+		
+	};
+	
+}
+```
+```html
+<p>第一个</p>
+<p>第二个</p>
+<p>第三个</p>
+<p>第四个</p>
+<p>第五个</p>
+```
