@@ -362,65 +362,68 @@ array2.<span class="pl-c1">push</span>(<span class="pl-c1">3</span>);
 
 <div class="highlight highlight-JavaScript"><pre><span class="pl-k">function</span> <span class="pl-en">range</span>(){
 
-    <span class="pl-k">try</span>{
+    <span class="pl-k">var</span> argLength <span class="pl-k">=</span> arguments.<span class="pl-c1">length</span>,
 
-        <span class="pl-k">var</span> argLength <span class="pl-k">=</span> arguments.<span class="pl-c1">length</span>;
+        newArray <span class="pl-k">=</span> [],
 
-        <span class="pl-k">var</span> newArray <span class="pl-k">=</span> [];
+        i <span class="pl-k">=</span> <span class="pl-c1">0</span>,
 
-        <span class="pl-k">switch</span>(argLength){
+        start <span class="pl-k">=</span> arguments[<span class="pl-c1">0</span>],
 
-            <span class="pl-k">case</span> <span class="pl-c1">0</span> <span class="pl-k">:</span> <span class="pl-k">return</span> newArray;<span class="pl-k">break</span>;
+        stop <span class="pl-k">=</span> arguments[<span class="pl-c1">1</span>],
 
-            <span class="pl-k">case</span> <span class="pl-c1">1</span> <span class="pl-k">:</span> {
+        step <span class="pl-k">=</span> arguments[<span class="pl-c1">2</span>];
 
-                <span class="pl-k">for</span>(<span class="pl-k">var</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span> ; i <span class="pl-k">&lt;</span> arguments[<span class="pl-c1">0</span>] ; i<span class="pl-k">++</span>){
+    <span class="pl-k">switch</span>(argLength){
 
-                    newArray.<span class="pl-c1">push</span>(i);
+        <span class="pl-k">case</span> <span class="pl-c1">0</span> <span class="pl-k">:</span> <span class="pl-k">throw</span> Error(<span class="pl-s"><span class="pl-pds">'</span>至少输入一个参数,限止数组在哪里结束<span class="pl-pds">'</span></span>);
 
-                }
+        <span class="pl-k">case</span> <span class="pl-c1">1</span> <span class="pl-k">:</span> {
 
-                <span class="pl-k">return</span> newArray;
+            stop <span class="pl-k">=</span> arguments[<span class="pl-c1">0</span>];
 
-                <span class="pl-k">break</span>;
+            <span class="pl-k">for</span>( i <span class="pl-k">=</span> <span class="pl-c1">0</span> ; i <span class="pl-k">&lt;</span> stop ; i<span class="pl-k">++</span>){
 
-            }
-
-            <span class="pl-k">case</span> <span class="pl-c1">2</span> <span class="pl-k">:</span> {
-
-                <span class="pl-k">for</span>(<span class="pl-k">var</span> i <span class="pl-k">=</span> arguments[<span class="pl-c1">0</span>] ; i <span class="pl-k">&lt;</span> arguments[<span class="pl-c1">1</span>] ; i<span class="pl-k">++</span>){
-
-                    newArray.<span class="pl-c1">push</span>(i);
-
-                }
-
-                <span class="pl-k">return</span> newArray;
-
-                <span class="pl-k">break</span>;
+                newArray.<span class="pl-c1">push</span>(i);
 
             }
 
-            <span class="pl-k">case</span> <span class="pl-c1">3</span> <span class="pl-k">:</span> {
-
-                <span class="pl-k">for</span>(<span class="pl-k">var</span> i <span class="pl-k">=</span> arguments[<span class="pl-c1">0</span>] ; i <span class="pl-k">&lt;</span> arguments[<span class="pl-c1">1</span>] ; i <span class="pl-k">=</span> i <span class="pl-k">+</span> arguments[<span class="pl-c1">2</span>]){
-
-                    newArray.<span class="pl-c1">push</span>(i);
-
-                }
-
-                <span class="pl-k">return</span> newArray;
-
-                <span class="pl-k">break</span>;
-
-            }
-
-            <span class="pl-k">default</span> <span class="pl-k">:</span> <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>error!<span class="pl-pds">"</span></span>);<span class="pl-k">break</span>;
+            <span class="pl-k">return</span> newArray;
 
         }
 
-    }<span class="pl-k">catch</span>(e){
+        <span class="pl-k">case</span> <span class="pl-c1">2</span> <span class="pl-k">:</span> {
 
-        <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>error!<span class="pl-pds">"</span></span>);
+            <span class="pl-k">for</span>( i <span class="pl-k">=</span> start ; i <span class="pl-k">&lt;</span> stop ; i<span class="pl-k">++</span>){
+
+                newArray.<span class="pl-c1">push</span>(i);
+
+            }
+
+            <span class="pl-k">return</span> newArray;
+
+        }
+
+        <span class="pl-k">case</span> <span class="pl-c1">3</span> <span class="pl-k">:</span> {
+
+            <span class="pl-k">if</span>(step <span class="pl-k">&lt;</span> <span class="pl-c1">1</span>) {
+
+                <span class="pl-k">throw</span> Error(<span class="pl-s"><span class="pl-pds">'</span>step &gt; 1<span class="pl-pds">'</span></span>);
+
+            }<span class="pl-k">else</span>{
+
+            <span class="pl-k">for</span>( i <span class="pl-k">=</span> start ; i <span class="pl-k">&lt;</span> stop ; i <span class="pl-k">+=</span> step){
+
+                    newArray.<span class="pl-c1">push</span>(i);
+
+                }
+
+                <span class="pl-k">return</span> newArray;
+            }
+
+        }
+
+        <span class="pl-k">default</span> <span class="pl-k">:</span> <span class="pl-k">throw</span> Error(<span class="pl-s"><span class="pl-pds">'</span>最多传入三个参数<span class="pl-pds">'</span></span>);
 
     }
 
@@ -495,6 +498,28 @@ function EventEmitter(){}</p>
     <span class="pl-c1"><span class="pl-c1">font-size</span></span>: <span class="pl-c1">20<span class="pl-k">px</span></span>;
     <span class="pl-c1"><span class="pl-c1">text-align</span></span>: <span class="pl-c1">center</span>;
     <span class="pl-c1"><span class="pl-c1">line-height</span></span>: <span class="pl-c1">50<span class="pl-k">px</span></span>;
+}</pre></div>
+
+<p>下面是锦欣大神提供的另一种答案：</p>
+
+<div class="highlight highlight-css"><pre><span class="pl-c">/**base style**/</span>
+<span class="pl-ent">div</span>{
+  <span class="pl-c1"><span class="pl-c1">background</span></span>:<span class="pl-c1">#000</span>;
+  <span class="pl-c1"><span class="pl-c1">color</span></span>:<span class="pl-c1">#fff</span>;
+  <span class="pl-c1"><span class="pl-c1">height</span></span>:<span class="pl-c1">50<span class="pl-k">px</span></span>;
+  <span class="pl-c1"><span class="pl-c1">width</span></span>:<span class="pl-c1">50<span class="pl-k">px</span></span>;
+  <span class="pl-c1"><span class="pl-c1">text-align</span></span>:<span class="pl-c1">center</span>;
+  <span class="pl-c1"><span class="pl-c1">line-height</span></span>:<span class="pl-c1">50<span class="pl-k">px</span></span>;
+}
+
+<span class="pl-c">/**start here**/</span>
+main{
+  <span class="pl-c1"><span class="pl-c1">text-align</span></span>:<span class="pl-c1">center</span>;
+}
+<span class="pl-ent">div</span>{
+  <span class="pl-c1"><span class="pl-c1">display</span></span>:<span class="pl-c1">inline-block</span>;
+  _<span class="pl-c1">display</span>:<span class="pl-c1">inline</span>;<span class="pl-c">/*hank IE*/</span>
+  _<span class="pl-c1">zoom</span>:<span class="pl-c1">0</span>;<span class="pl-c">/*hank IE*/</span>
 }</pre></div>
 
 <hr>
