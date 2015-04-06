@@ -657,7 +657,7 @@ function getLabelsGet(){
     var url="http://timtsang.github.io?id="+id+"&t/"+Math.random();
     xmlHttp.open("GET",url,true);
     xmlHttp.onreadystatechange=favorOK;//发送事件后，收到信息了调用函数
-    xmlHttp.send();
+    xmlHttp.send(null);
 }
 function getOkGet(){
     if(xmlHttp.readyState==1||xmlHttp.readyState==2||xmlHttp.readyState==3){
