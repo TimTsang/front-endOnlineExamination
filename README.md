@@ -154,9 +154,9 @@ var name = 'World!';
 
 **A、**页面的`html元`素可以通过`id`获取，具有唯一性，如：`var divObjId = document.getElementsById("test");`。所以`A`是正确的。
 
-**B、**页面的`html`元素可以通过`class`获取，会选择页面上所有`class`名为`test`的DOM标签，如：`var divObjClass = document.getElementsByClassName("test");`。所以`B`是正确的。
+**B、**页面的`html`元素可以通过`class`获取，会选择页面上所有`class`名为`test`的所有元素，返回的对象是`NodeList`。如：`var divObjClass = document.getElementsByClassName("test");`。所以`B`是正确的。
 
-**C、D 、**`document.querySelector`只返回匹配的第一个元素，如果没有匹配项，返回`null`。`document.querySelectorAll`返回匹配的元素集合，如果没有匹配项，返回空的`nodelist`(节点数组)。这两个方法都可以接受三种类型的参数：`id(#)`，`class(.)`，`标签`，很像`jquery`的选择器。如：
+**C、D 、**`document.querySelector`只返回匹配的第一个元素，如果没有匹配项，返回`null`。`document.querySelectorAll`返回匹配的元素集合，如果没有匹配项，返回空的`NodeList`(节点数组)。这两个方法都可以接受三种类型的参数：`id(#)`，`class(.)`，`标签`，很像`jquery`的选择器。如：
 
 ```JavaScript
 var obj = document.querySelector("#id");
